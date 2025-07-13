@@ -52,7 +52,8 @@ def apply_limit(bmi, limit):
     for b in bmi:
         if not isinstance(b, (int, float)):
             raise TypeError("BMI list must contain only numbers.")
-
+    if not isinstance(limit, int):
+        raise TypeError("Limit must be an integer")
     result = []
     for b in bmi:
         if b > limit:
@@ -69,7 +70,7 @@ def main():
 
     bmi = give_bmi(height, weight)
     print(bmi, type(bmi))
-    print(apply_limit(bmi, 26))
+    print(apply_limit(bmi, 66.7))
 
 if __name__ == "__main__":
     main()
