@@ -17,7 +17,6 @@ def slice_me(family: list, start: int, end: int) -> list:
     if not isinstance(start, int) or not isinstance(end, int):
         raise TypeError("Start and end must be integers")
 
-
     row_length = len(family[0])
     for row in family:
         if not isinstance(row, list):

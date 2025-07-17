@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
 
+
 def ft_load(path: str) -> np.ndarray:
     """
     Loads an image from the given path, prints its pixel data.

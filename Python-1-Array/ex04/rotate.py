@@ -25,7 +25,7 @@ def transpose(image: np.ndarray) -> np.ndarray:
         new_row = []
         for j in range(rows):  # проходим по каждой строке
             new_row.append(image[j][i])  # берем элемент из строки j, столбца i
-        transposed.append(new_row)  # добавляем новую строку в транспонированную матрицу
+        transposed.append(new_row)
     return np.array(transposed)
 
 
