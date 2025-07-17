@@ -31,6 +31,10 @@
 #     main()
 
 def give_bmi(height, weight):
+    """
+    Computes the BMI for given heights and weights lists.
+    Returns a list of BMI values.
+    """
     if len(height) != len(weight):
         raise ValueError("Height and weight lists must have the same length.")
 
@@ -41,14 +45,15 @@ def give_bmi(height, weight):
     for w in weight:
         if not isinstance(w, (int, float)):
             raise TypeError("Weight list must contain only numbers.")
-
     bmi_list = []
     for h, w in zip(height, weight):
         bmi_list.append(w / (h ** 2))
-
     return bmi_list
 
 def apply_limit(bmi, limit):
+    """
+    Returns a list of booleans where True means the BMI is greater than the limit.
+    """
     for b in bmi:
         if not isinstance(b, (int, float)):
             raise TypeError("BMI list must contain only numbers.")
@@ -60,17 +65,16 @@ def apply_limit(bmi, limit):
             result.append(True)
         else:
             result.append(False)
-
     return result
 
 
-def main():
-    height = [2.71, 1.15]
-    weight = [165.3, 38.4]
+# def main():
+#     height = [2.71, 1.15]
+#     weight = [165.3, 38.4]
 
-    bmi = give_bmi(height, weight)
-    print(bmi, type(bmi))
-    print(apply_limit(bmi, 66.7))
+#     bmi = give_bmi(height, weight)
+#     print(bmi, type(bmi))
+#     print(apply_limit(bmi, 66.7))
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
