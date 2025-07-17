@@ -1,49 +1,66 @@
+# pimp_image.py
 import numpy as np
 import matplotlib.pyplot as plt
-from load_image import ft_load
 
-def main():
-    try:
-        img = ft_load("animal.jpeg")
-        if img is None:
-            return
 
-        print(f"Original shape: {img.shape}")
-        print(img)
+def ft_invert(array) -> np.ndarray:
+    """
+    Inverts the colors of the input image array.
+    """
+    inverted = 255 - array
+    # plt.imshow(inverted)
+    # plt.title("Inverted")
+    # plt.show()
+    return inverted
 
-        # === Invert filter ===
-        inverted = 255 - img
 
-        print(f"Inverted shape: {inverted.shape}")
-        print(inverted)
+def ft_red(array) -> np.ndarray:
+    """
+    Keeps only the red channel of the image.
+    """
+    red_only = array.copy()
+    red_only[:, :, 1] *= 0  # Zero green channel
+    red_only[:, :, 2] *= 0  # Zero blue channel
+    # plt.imshow(red_only)
+    # plt.title("Red Filter")
+    # plt.show()
+    return red_only
 
-        plt.imshow(inverted)
-        plt.title("Inverted Image")
-        plt.xlabel("X axis")
-        plt.ylabel("Y axis")
-        plt.show()
 
-        # === Switch channels ===
-        switched = img[:, :, [2, 1, 0]]
+def ft_green(array) -> np.ndarray:
+    """
+    Keeps only the green channel of the image.
+    """
+    green_only = array.copy()
+    green_only[:, :, 0] = green_only[:, :, 0] - green_only[:, :, 0]  # Zero red
+    green_only[:, :, 2] = green_only[:, :, 2] - green_only[:, :, 2]  # Zero blue
+    # plt.imshow(green_only)
+    # plt.title("Green Filter")
+    # plt.show()
+    return green_only
 
-        plt.imshow(switched)
-        plt.title("Switched Channels (BGR)")
-        plt.xlabel("X axis")
-        plt.ylabel("Y axis")
-        plt.show()
 
-        # === Grayscale ===
-        gray = np.dot(img[...,:3], [0.299, 0.587, 0.114])
-        gray_rgb = np.stack((gray,)*3, axis=-1).astype(np.uint8)
+def ft_blue(array) -> np.ndarray:
+    """
+    Keeps only the blue channel of the image.
+    """
+    blue_only = array.copy()
+    blue_only[:, :, 0] = 0  # Zero red
+    blue_only[:, :, 1] = 0  # Zero green
+    # plt.imshow(blue_only)
+    # plt.title("Blue Filter")
+    # plt.show()
+    return blue_only
 
-        plt.imshow(gray_rgb)
-        plt.title("Grayscale Image")
-        plt.xlabel("X axis")
-        plt.ylabel("Y axis")
-        plt.show()
 
-    except Exception as e:
-        print(f"Error: {e}")
-
-if __name__ == "__main__":
-    main()
+def ft_grey(array) -> np.ndarray:
+    """
+    Converts the image to grayscale.
+    """
+    grey = array.copy()
+    grey_value = (grey[:, :, 0] / 3) + (grey[:, :, 1] / 3) + (grey[:, :, 2] / 3)
+    grey_img = np.stack((grey_value,) * 3, axis=-1).astype(np.uint8)
+    # plt.imshow(grey_img)
+    # plt.title("Grey Filter")
+    # plt.show()
+    return grey_img
