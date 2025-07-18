@@ -17,6 +17,7 @@ def ft_load(path: str) -> np.ndarray:
         img = img.convert('RGB')
         img_array = np.array(img)
         print(f"The shape of image is: {img_array.shape}")
+        print(np.concatenate((img_array[0:1], img_array[-1:]), axis=1))
         return img_array
     except FileNotFoundError:
         print(f"Error: File '{path}' not found.")
