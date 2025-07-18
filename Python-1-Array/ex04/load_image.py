@@ -14,9 +14,12 @@ def ft_load(path: str) -> np.ndarray:
     """
     try:
         img = Image.open(path)
+        if img.format not in ['JPEG', 'JPG']:
+            raise ValueError(f"Don't supported image format '{img.format}'. Only JPEG or JPG format.")
+        img = img.convert('RGB')
         img = img.convert('RGB')
         img_array = np.array(img)
-        print(f"The shape of image is: {img_array.shape}")
+        # print(f"The shape of image is1: {img_array.shape}")
         return img_array
     except FileNotFoundError:
         print(f"Error: File '{path}' not found.")
