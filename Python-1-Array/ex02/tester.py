@@ -2,10 +2,7 @@ from load_image import ft_load
 
 
 def main():
-    path = "landscape.jpg"
-    result = ft_load(path)
-    if result is not None:
-        print(result)
+    print(ft_load("landscape.jpg"))
 
 
 if __name__ == "__main__":
